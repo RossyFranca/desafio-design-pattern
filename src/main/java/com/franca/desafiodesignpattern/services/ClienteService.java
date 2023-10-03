@@ -18,10 +18,6 @@ public class ClienteService {
     private ContaRepository contaRepository;
 
 
-    public void createNewClient(Cliente cliente){
-           clienteRepository.save(cliente);
-    };
-
     public Cliente buscarClientePorCpf(String cpf){
             return clienteRepository.findByCpf(cpf);
     };

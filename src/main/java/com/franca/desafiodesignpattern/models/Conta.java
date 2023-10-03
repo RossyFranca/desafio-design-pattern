@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -18,4 +20,11 @@ public class Conta {
     private Long id;
     private double saldo;
 
+    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
+    private List<Transacao> transacoes = new ArrayList<>();
+
+
+    public void adicionarTransacao(Transacao transacao) {
+        transacoes.add(transacao);
+    }
 }
