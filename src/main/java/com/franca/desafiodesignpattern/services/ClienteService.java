@@ -5,7 +5,6 @@ import com.franca.desafiodesignpattern.models.Conta;
 import com.franca.desafiodesignpattern.repository.ClienteRepository;
 import com.franca.desafiodesignpattern.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +15,10 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
-    private PasswordEncoder encoder;
-
-    @Autowired
     private ContaRepository contaRepository;
 
 
     public void createNewClient(Cliente cliente){
-           String password = cliente.getPassword();
-           cliente.setPassword(encoder.encode(password));
            clienteRepository.save(cliente);
     };
 
@@ -33,13 +27,13 @@ public class ClienteService {
     };
 
     public Cliente criarCliente(Cliente cliente){
-        Conta conta = new Conta();
         //TODO: melhoras lógica para obrigar a iniciar a criação com um depósito mínimo
         // para se criar uma conta ou algo parecido
+        Conta conta = new Conta();
         conta.setSaldo(0.0);
-        cliente.setConta(conta);
 
-        contaRepository.save(conta);
+        // Associe a conta ao cliente
+        cliente.setConta(conta);
 
         return clienteRepository.save(cliente);
     }

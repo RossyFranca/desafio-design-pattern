@@ -14,10 +14,8 @@ import javax.persistence.*;
 public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_conta")
     private Long id;
     private double saldo;
 
-    @OneToOne
-    @JoinColumn(name = "cpf_cliente", unique = true)
-    private Cliente cliente;
 }
