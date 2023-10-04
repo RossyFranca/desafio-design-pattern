@@ -1,5 +1,6 @@
 package com.franca.desafiodesignpattern.services;
 
+import com.franca.desafiodesignpattern.exceptions.DepositoMinimoException;
 import com.franca.desafiodesignpattern.models.Cliente;
 import com.franca.desafiodesignpattern.models.Conta;
 import com.franca.desafiodesignpattern.repository.ClienteRepository;
@@ -23,15 +24,18 @@ public class ClienteService {
     };
 
     public Cliente criarCliente(Cliente cliente){
-        //TODO: melhoras lógica para obrigar a iniciar a criação com um depósito mínimo
-        // para se criar uma conta ou algo parecido
         Conta conta = new Conta();
-        conta.setSaldo(0.0);
-
+        //TODO: Verificar forma de retornar a exception pelo controller
+        verificarSaldoMinimoDeAbertura(cliente.getConta().getSaldo());
+        conta.setSaldo(cliente.getConta().getSaldo());
         // Associe a conta ao cliente
         cliente.setConta(conta);
 
         return clienteRepository.save(cliente);
+    }
+    private void verificarSaldoMinimoDeAbertura(double saldo){
+        if(saldo <= 0.0)
+            throw new DepositoMinimoException("Para abertura de conta é necessário algum depósito");
     }
 
     public List<Cliente> listarClientes() {

@@ -16,7 +16,7 @@ public class DataBaseInitializer {
     public void initialize() {
         // Crie a conta de teste
         Conta contaTeste = new Conta();
-        contaTeste.setSaldo(0.0);
+        contaTeste.setSaldo(1200.0);
 
         // Crie o cliente associado à conta
         Cliente clienteTeste = new Cliente();

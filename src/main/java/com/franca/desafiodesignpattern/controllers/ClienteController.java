@@ -1,5 +1,6 @@
 package com.franca.desafiodesignpattern.controllers;
 
+import com.franca.desafiodesignpattern.exceptions.DepositoMinimoException;
 import com.franca.desafiodesignpattern.models.Cliente;
 import com.franca.desafiodesignpattern.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ClienteController {
     }
 
     @PostMapping("/")
-    public Cliente criarCliente(@RequestBody Cliente cliente) {
+    public Cliente criarCliente(@RequestBody Cliente cliente)  {
         return clienteService.criarCliente(cliente);
     }
 
