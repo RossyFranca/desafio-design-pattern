@@ -1,5 +1,6 @@
 package com.franca.desafiodesignpattern.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,4 @@ public class Conta {
     private Long id;
     private double saldo;
 
-    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
-    private List<Transacao> transacoes = new ArrayList<>();
-
-
-    public void adicionarTransacao(Transacao transacao) {
-        transacoes.add(transacao);
-    }
 }

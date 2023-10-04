@@ -1,4 +1,5 @@
 package com.franca.desafiodesignpattern.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,6 +19,6 @@ public class Transacao {
 
     @ManyToOne
     @JoinColumn(name = "id_conta")
-    private Conta conta;
+    private Conta conta; // Adicione o atributo conta
 
 }
